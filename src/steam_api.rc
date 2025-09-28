@@ -26,13 +26,13 @@ BEGIN
     BEGIN
         BLOCK "040904b0"
         BEGIN
-            VALUE "CompanyName", "Steam API Emulator"
-            VALUE "FileDescription", "Steam API Emulator DLL"
+            VALUE "CompanyName", "UC-Emu"
+            VALUE "FileDescription", "Union-Crax Steam Emu"
             VALUE "FileVersion", "1.0.0.0"
-            VALUE "InternalName", "steam_api"
-            VALUE "LegalCopyright", "Copyright (C) 2025"
+            VALUE "InternalName", "UC-Emu"
+            VALUE "LegalCopyright", "union-crax.xyz | 2025"
             VALUE "OriginalFilename", "steam_api.dll"
-            VALUE "ProductName", "Steam API Emulator"
+            VALUE "ProductName", "UC-Emu"
             VALUE "ProductVersion", "1.0.0.0"
             VALUE "Architecture", ARCHITECTURE
         END

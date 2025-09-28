@@ -1,0 +1,44 @@
+#include <windows.h>
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+#define VS_VERSION_INFO    1
+
+#ifdef _WIN64
+    #define ARCHITECTURE "x64"
+#else
+    #define ARCHITECTURE "x86"
+#endif
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,0
+ PRODUCTVERSION 1,0,0,0
+ FILEFLAGSMASK 0x3fL
+ FILEFLAGS 0x0L
+ FILEOS 0x40004L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "CompanyName", "Steam API Emulator"
+            VALUE "FileDescription", "Steam API Emulator DLL"
+            VALUE "FileVersion", "1.0.0.0"
+            VALUE "InternalName", "steam_api"
+            VALUE "LegalCopyright", "Copyright (C) 2025"
+            VALUE "OriginalFilename", "steam_api.dll"
+            VALUE "ProductName", "Steam API Emulator"
+            VALUE "ProductVersion", "1.0.0.0"
+            VALUE "Architecture", ARCHITECTURE
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END

@@ -5,6 +5,8 @@
 typedef unsigned int uint32;
 typedef unsigned short uint16;
 typedef unsigned long long uint64;
+typedef unsigned char uint8;
+typedef unsigned char NULL;
 
 // Steam API return values
 enum ESteamAPIInitResult
@@ -17,7 +19,9 @@ enum ESteamAPIInitResult
 
 // Steam interface versions
 #define STEAMCLIENT_INTERFACE_VERSION_017 "SteamClient017"
+#define STEAMCLIENT_INTERFACE_VERSION_018 "SteamClient018"
 #define STEAMUSER_INTERFACE_VERSION_017 "SteamUser017"
+#define STEAMUSER_INTERFACE_VERSION_020 "SteamUser020"
 #define STEAMFRIENDS_INTERFACE_VERSION_015 "SteamFriends015"
 #define STEAMUTILS_INTERFACE_VERSION_007 "SteamUtils007"
 #define STEAMUTILS_INTERFACE_VERSION_009 "SteamUtils009"
@@ -42,6 +46,15 @@ extern "C"
     __declspec(dllexport) ISteamFriends* SteamFriends();
     __declspec(dllexport) ISteamUtils* SteamUtils();
     __declspec(dllexport) ISteamMatchmaking* SteamMatchmaking();
+    __declspec(dllexport) uint32 SteamAPI_GetHSteamUser();
+    __declspec(dllexport) uint32 SteamAPI_GetHSteamUserA();
+    __declspec(dllexport) uint32 SteamAPI_GetHSteamPipe();
+    __declspec(dllexport) uint32 SteamAPI_GetHSteamPipeA();
+    __declspec(dllexport) const char* SteamAPI_GetSteamInstallPath();
+    __declspec(dllexport) const char* SteamAPI_GetSteamInstallPathA();
+    __declspec(dllexport) const char* SteamAPI_GetSteamUserBase();
+    __declspec(dllexport) uint32 SteamAPI_CreateInterface();
+    __declspec(dllexport) uint32 SteamAPI_CreateInterfaceA();
 }
 
 // Base interface class

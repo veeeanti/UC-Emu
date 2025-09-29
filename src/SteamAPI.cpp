@@ -61,25 +61,25 @@ extern "C"
     __declspec(dllexport) uint32 SteamAPI_GetHSteamUser()
     {
         // Return a dummy HSteamUser value
-        return 1;
+        return 0;
     }
 
     __declspec(dllexport) uint32 SteamAPI_GetHSteamUserA()
     {
         // Return a dummy HSteamUserA value
-        return 1;
+        return 0;
     }
 
     __declspec(dllexport) uint32 SteamAPI_GetHSteamPipe()
     {
         // Return a dummy HSteamPipe value
-        return 1;
+        return 0;
     }
 
     __declspec(dllexport) uint32 SteamAPI_GetHSteamPipeA()
     {
         // Return a dummy HSteamPipeA value
-        return 1;
+        return 0;
     }
 
     __declspec(dllexport) const char* SteamAPI_GetSteamInstallPath()
@@ -103,12 +103,17 @@ extern "C"
     __declspec(dllexport) uint32 SteamAPI_CreateInterface()
     {
         // Dummy implementation
-        return 1;
+        return 0;
     }
 
     __declspec(dllexport) uint32 SteamAPI_CreateInterfaceA()
     {
         // Dummy implementation
-        return 1;
+        return 0;
+    }
+
+    __declspec(dllexport) void SteamInternal_CreateInterface(const char *pchVersion)
+    {
+        // Dummy implementation
     }
 }

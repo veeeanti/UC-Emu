@@ -42,7 +42,7 @@ private:
     std::string m_personaName;
     
 public:
-    CSteamFriends() : m_personaName("Player") {}
+    CSteamFriends() : m_personaName("union-crax") {}
     virtual ~CSteamFriends() {}
     
     // Returns the local player's name

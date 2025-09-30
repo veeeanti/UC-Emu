@@ -6,7 +6,9 @@ typedef unsigned int uint32;
 typedef unsigned short uint16;
 typedef unsigned long long uint64;
 typedef unsigned char uint8;
-typedef unsigned char NULL;
+// Note: NULL is already defined in standard headers, so we don't need to define it here
+// If needed, it should be defined as: const void* NULL = 0;
+// But we'll just remove this incorrect typedef
 
 // Steam API return values
 enum ESteamAPIInitResult
@@ -35,17 +37,17 @@ class ISteamUtils;
 class ISteamMatchmaking;
 
 // Steam API functions
-extern "C" 
+extern "C"
 {
     __declspec(dllexport) ESteamAPIInitResult SteamAPI_Init();
     __declspec(dllexport) void SteamAPI_Shutdown();
     __declspec(dllexport) void SteamAPI_RunCallbacks();
     __declspec(dllexport) bool SteamAPI_IsSteamRunning();
-    __declspec(dllexport) ISteamClient* SteamClient();
-    __declspec(dllexport) ISteamUser* SteamUser();
-    __declspec(dllexport) ISteamFriends* SteamFriends();
-    __declspec(dllexport) ISteamUtils* SteamUtils();
-    __declspec(dllexport) ISteamMatchmaking* SteamMatchmaking();
+    __declspec(dllexport) void* SteamClient();
+    __declspec(dllexport) void* SteamUser();
+    __declspec(dllexport) void* SteamFriends();
+    __declspec(dllexport) void* SteamUtils();
+    __declspec(dllexport) void* SteamMatchmaking();
     __declspec(dllexport) uint32 SteamAPI_GetHSteamUser();
     __declspec(dllexport) uint32 SteamAPI_GetHSteamUserA();
     __declspec(dllexport) uint32 SteamAPI_GetHSteamPipe();
@@ -53,8 +55,7 @@ extern "C"
     __declspec(dllexport) const char* SteamAPI_GetSteamInstallPath();
     __declspec(dllexport) const char* SteamAPI_GetSteamInstallPathA();
     __declspec(dllexport) const char* SteamAPI_GetSteamUserBase();
-    __declspec(dllexport) uint32 SteamAPI_CreateInterface();
-    __declspec(dllexport) uint32 SteamAPI_CreateInterfaceA();
+    __declspec(dllexport) void* SteamAPI_CreateInterface(const char* pName, int* pReturnCode);
 }
 
 // Base interface class

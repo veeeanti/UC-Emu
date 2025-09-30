@@ -2,13 +2,13 @@
 #include <iostream>
 #include <string>
 #include <ctime>
+#include <windows.h>
 
 // SteamClient implementation
 class CSteamClient : public ISteamClient
 {
 public:
-    CSteamClient() {}
-    virtual ~CSteamClient() {}
+    // Using default constructor and destructor
 };
 
 // SteamUser implementation
@@ -65,8 +65,7 @@ public:
 class CSteamUtils : public ISteamUtils
 {
 public:
-    CSteamUtils() {}
-    virtual ~CSteamUtils() {}
+    // Using default constructor and destructor
     
     // Returns the number of seconds since the Unix epoch
     virtual uint32 GetSecondsSinceAppActive() override
@@ -85,11 +84,10 @@ public:
 class CSteamMatchmaking : public ISteamMatchmaking
 {
 private:
-    int m_favoriteGameCount;
+    int m_favoriteGameCount = 0; // Initialize directly
     
 public:
-    CSteamMatchmaking() : m_favoriteGameCount(0) {}
-    virtual ~CSteamMatchmaking() {}
+    // Using default destructor
     
     // Gets the number of active players
     virtual int GetFavoriteGameCount() override
@@ -138,6 +136,7 @@ extern "C" void SteamAPI_Shutdown_Impl()
     delete g_pSteamUser;
     delete g_pSteamClient;
     
+    // Reset pointers to nullptr
     g_pSteamClient = nullptr;
     g_pSteamUser = nullptr;
     g_pSteamFriends = nullptr;
@@ -168,4 +167,33 @@ extern "C" ISteamUtils* SteamUtils_Impl()
 extern "C" ISteamMatchmaking* SteamMatchmaking_Impl()
 {
     return g_pSteamMatchmaking;
+}
+
+extern "C" __declspec(dllexport) void* __cdecl CreateInterface(const char* pName, int* pReturnCode)
+{
+    using fn_create_interface_t = void* (__cdecl*)(const char*);
+
+    auto steam_api = LoadLibraryA("steam_api.dll");
+    if (!steam_api) {
+        if (pReturnCode) *pReturnCode = 1; // IFACE_FAILED
+        return nullptr;
+    }
+
+    auto create_interface = (fn_create_interface_t)GetProcAddress(steam_api, "SteamInternal_CreateInterface");
+    if (!create_interface) {
+        if (pReturnCode) *pReturnCode = 1; // IFACE_FAILED
+        return nullptr;
+    }
+
+    auto ptr = create_interface(pName);
+    if (pReturnCode) {
+        if (ptr) {
+            *pReturnCode = 0; // IFACE_OK
+        }
+        else {
+            *pReturnCode = 1; // IFACE_FAILED
+        }
+    }
+
+    return ptr;
 }

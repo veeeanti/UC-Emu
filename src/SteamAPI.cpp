@@ -33,85 +33,71 @@ extern "C"
         return true;
     }
     
-    __declspec(dllexport) ISteamClient* SteamClient()
+    __declspec(dllexport) void* SteamClient()
     {
         return SteamClient_Impl();
     }
     
-    __declspec(dllexport) ISteamUser* SteamUser()
+    __declspec(dllexport) void* SteamUser()
     {
         return SteamUser_Impl();
     }
     
-    __declspec(dllexport) ISteamFriends* SteamFriends()
+    __declspec(dllexport) void* SteamFriends()
     {
         return SteamFriends_Impl();
     }
     
-    __declspec(dllexport) ISteamUtils* SteamUtils()
+    __declspec(dllexport) void* SteamUtils()
     {
         return SteamUtils_Impl();
     }
     
-    __declspec(dllexport) ISteamMatchmaking* SteamMatchmaking()
+    __declspec(dllexport) void* SteamMatchmaking()
     {
         return SteamMatchmaking_Impl();
     }
 
     __declspec(dllexport) uint32 SteamAPI_GetHSteamUser()
     {
-        // Return a dummy HSteamUser value
-        return 0;
+        return 0; // Dummy HSteamUser value
     }
-
+    
     __declspec(dllexport) uint32 SteamAPI_GetHSteamUserA()
     {
-        // Return a dummy HSteamUserA value
-        return 0;
+        return 0; // Dummy HSteamUserA value
     }
-
+    
     __declspec(dllexport) uint32 SteamAPI_GetHSteamPipe()
     {
-        // Return a dummy HSteamPipe value
-        return 0;
+        return 0; // Dummy HSteamPipe value
     }
-
+    
     __declspec(dllexport) uint32 SteamAPI_GetHSteamPipeA()
     {
-        // Return a dummy HSteamPipeA value
-        return 0;
+        return 0; // Dummy HSteamPipeA value
     }
-
+    
     __declspec(dllexport) const char* SteamAPI_GetSteamInstallPath()
     {
-        // Return a dummy Steam install path
-        return "C:\\Program Files (x86)\\Steam";
+        return "C:\\Program Files (x86)\\Steam"; // Dummy Steam install path
     }
-
+    
     __declspec(dllexport) const char* SteamAPI_GetSteamInstallPathA()
     {
-        // Return a dummy Steam install path
-        return "C:\\Program Files (x86)\\Steam";
+        return "C:\\Program Files (x86)\\Steam"; // Dummy Steam install path
     }
-
+    
     __declspec(dllexport) const char* SteamAPI_GetSteamUserBase()
     {
-        // Return a dummy Steam user base path
-        return "C:\\Program Files (x86)\\Steam\\userdata";
+        return "C:\\Program Files (x86)\\Steam\\userdata"; // Dummy Steam user base path
     }
-
-    __declspec(dllexport) uint32 SteamAPI_CreateInterface()
+    
+    __declspec(dllexport) void* SteamAPI_CreateInterface(const char* pName, int* pReturnCode)
     {
-        // Dummy implementation
-        return 0;
+        return nullptr; // Dummy implementation
     }
-
-    __declspec(dllexport) uint32 SteamAPI_CreateInterfaceA()
-    {
-        // Dummy implementation
-        return 0;
-    }
-
+    
     __declspec(dllexport) void SteamInternal_CreateInterface(const char *pchVersion)
     {
         // Dummy implementation

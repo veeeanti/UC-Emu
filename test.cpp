@@ -16,6 +16,7 @@ typedef void* (*SteamUserFunc)();
 typedef void* (*SteamFriendsFunc)();
 typedef void* (*SteamUtilsFunc)();
 typedef void* (*SteamMatchmakingFunc)();
+typedef void* (*SteamAPI_CreateInterfaceFunc)(const char*, int*);
 
 int main()
 {
@@ -37,11 +38,12 @@ int main()
     SteamFriendsFunc SteamFriends = (SteamFriendsFunc)GetProcAddress(hModule, "SteamFriends");
     SteamUtilsFunc SteamUtils = (SteamUtilsFunc)GetProcAddress(hModule, "SteamUtils");
     SteamMatchmakingFunc SteamMatchmaking = (SteamMatchmakingFunc)GetProcAddress(hModule, "SteamMatchmaking");
+    SteamAPI_CreateInterfaceFunc SteamAPI_CreateInterface = (SteamAPI_CreateInterfaceFunc)GetProcAddress(hModule, "SteamAPI_CreateInterface");
     
     // Check if all functions were found
-    if (!SteamAPI_Init || !SteamAPI_Shutdown || !SteamAPI_RunCallbacks || 
-        !SteamAPI_IsSteamRunning || !SteamClient || !SteamUser || 
-        !SteamFriends || !SteamUtils || !SteamMatchmaking)
+    if (!SteamAPI_Init || !SteamAPI_Shutdown || !SteamAPI_RunCallbacks ||
+        !SteamAPI_IsSteamRunning || !SteamClient || !SteamUser ||
+        !SteamFriends || !SteamUtils || !SteamMatchmaking || !SteamAPI_CreateInterface)
     {
         std::cerr << "Failed to get one or more function addresses" << std::endl;
         FreeLibrary(hModule);

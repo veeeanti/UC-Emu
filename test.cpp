@@ -1,3 +1,8 @@
+/*         
+This doesn't work anymore. No clue as to why, it doesn't even work with the original steam_api.dll. Annoying ahh code.
+~veeanti          
+*/
+
 #include <iostream>
 #include <windows.h>
 

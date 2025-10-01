@@ -3,6 +3,12 @@
 // Define PFNPreMinidumpCallback as a function pointer type if not already defined
 typedef void (*PFNPreMinidumpCallback)(void*);
 
+// Forward declaration for IGameEventListener to resolve identifier error
+class IGameEventListener;
+
+// Define SteamAPICall_t as a 64-bit unsigned integer if not already defined
+typedef uint64 SteamAPICall_t;
+
 // Declare the functions that are implemented in SteamClient.cpp
 extern "C" ESteamAPIInitResult SteamAPI_Init_Impl();
 extern "C" void SteamAPI_Shutdown_Impl();
@@ -240,62 +246,66 @@ extern "C"
     
     __declspec(dllexport) void SteamGameServer_Shutdown()
     {
-        // Dummy implementation
+        
     }
     
     __declspec(dllexport) void SteamGameServer_RunCallbacks()
     {
-        // Dummy implementation
+        
     }
     
     __declspec(dllexport) bool SteamGameServer_BSecure()
     {
-        return false; // Dummy implementation
+        return false; // ah yes very bsecure, love it
     }
     
     __declspec(dllexport) uint64 SteamGameServer_GetSteamID()
     {
-        return 0; // Dummy implementation
+        return 0; // thats totally a valid steamid
     }
     
     __declspec(dllexport) bool SteamGameServer_Init(uint32 unIP, uint16 usPort, uint16 usGamePort, uint16 usQueryPort, EServerMode eServerMode, const char* pchVersionString)
     {
-        return true; // Dummy implementation - always succeed
+        return true; // you have no choice - you must init
     }
 
     __declspec(dllexport) uint32 SteamInternal_ContextInit()
     {
-        // Dummy implementation
+        // So, one of the games i test with this has this import 
+        //in one of the dlls it depends on to render the game's
+        // graphics, it's Half-Life and the dll is hw.dll. It
+        // relies on the steam_api.dll for whatever reason and is
+        // really annoying too. -veeanti
         return 0;
     }
 
     __declspec(dllexport) void* SteamInternal_FindOrCreateUserInterface(uint32 hSteamUser, uint32 hSteamPipe, const char* pchVersion)
     {
-        // Dummy implementation
+        // i guess it couldnt find it, but it did find a nullpitter!
         return nullptr;
     }
 
     __declspec(dllexport) void* SteamInternal_FindOrCreateGameServerInterface(uint32 hSteamUser, uint32 hSteamPipe, const char* pchVersion)
     {
-        // Dummy implementation
+        
         return nullptr;
     }
 
     __declspec(dllexport) void* SteamInternal_GameServer_Init()
     {
-        // Dummy implementation
+        
         return nullptr;
     }
 
     __declspec(dllexport) bool SteamAPI_WriteMiniDump(uint32 uStructuredExceptionCode, void* pvExceptionInfo, uint32 uBuildID)
     {
-        // Dummy implementation
+        
         return true;
     }
 
     __declspec(dllexport) bool SteamAPI_SetMiniDumpComment(const char *pchMsg)
     {
-        // Dummy implementation
+        
         return true;
     }
 
@@ -308,12 +318,23 @@ extern "C"
         PFNPreMinidumpCallback m_pfnPreminidumpCallback
     )
     {
-        // Dummy implementation
+        // pingas
     }
 
     __declspec(dllexport) bool SteamAPI_SetBreakpadAppID( uint32 unAppID )
     {
-        // Dummy implementation
+        // quick question: what the fuck is a breakpadappid?
         return true;
+    }
+
+    __declspec(dllexport) bool SteamAPI_RegisterCallResult( SteamAPICall_t hAPICall, IGameEventListener* pListener )
+    {
+        // always succeed
+        return true;
+    }
+
+    __declspec(dllexport) void SteamAPI_UnregisterCallResult( SteamAPICall_t hAPICall, IGameEventListener* pListener )
+    {
+        // always succeed...?
     }
 }

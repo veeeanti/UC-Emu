@@ -70,6 +70,6 @@ echo   x86 Test: build-x86\Debug\test_steam.exe
 echo   x64 Test: build-x64\Debug\test_steam.exe
 
 xcopy /Y ".\build-x86\Debug\steam_api.dll" ".\dlls"
-xcopy /Y ".\build-x86\Debug\steam_api.dll" ".\dlls\steam_api64.dll"
+xcopy /Y ".\build-x64\Debug\steam_api.dll" ".\dlls\steam_api64.dll"
 
 exit /b 0
